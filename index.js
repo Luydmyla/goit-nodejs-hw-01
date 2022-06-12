@@ -1,7 +1,6 @@
 const contactsOperations = require("./contacts");
 const yargs = require("yargs");
 const { hideBin } = require("yargs/helpers");
-console.log(contactsOperations);
 
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
@@ -13,7 +12,6 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       console.log(id);
       const contact = await contactsOperations.getContactById(id);
       if (!contact) {
-        //   якщо база даних не знайшла такого contact, то ми генеруємо помилку и повідомляємо про це
         throw new Error(`Product with id=${id} not found`);
       }
       console.log(contact);
@@ -36,7 +34,6 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 };
 const arr = hideBin(process.argv);
 const { argv } = yargs(arr);
-// console.log(argv);
 invokeAction(argv);
 
 //ПЕРЕВІРКА
