@@ -1,12 +1,16 @@
 const contactsOperations = require("./contacts");
+const yargs = require("yargs");
+const { hideBin } = require("yargs/helpers");
 console.log(contactsOperations);
+
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
-    case "listContacts":
+    case "list":
       const contacts = await contactsOperations.listContacts();
-      console.log(contacts);
+      console.table(contacts);
       break;
-    case "getContactById":
+    case "get":
+      console.log(id);
       const contact = await contactsOperations.getContactById(id);
       if (!contact) {
         //   якщо база даних не знайшла такого contact, то ми генеруємо помилку и повідомляємо про це
@@ -14,7 +18,7 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       }
       console.log(contact);
       break;
-    case "addContact":
+    case "add":
       const newContact = await contactsOperations.addContact(
         name,
         email,
@@ -22,7 +26,7 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       );
       console.log(newContact);
       break;
-    case "removeContact":
+    case "remove":
       const removeContact = await contactsOperations.removeContact(id);
       console.log(removeContact);
       break;
@@ -30,21 +34,36 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       gefault: console.warn("\x1B[31m Unknown action type!");
   }
 };
-// const id = "1";
+const arr = hideBin(process.argv);
+const { argv } = yargs(arr);
+// console.log(argv);
+invokeAction(argv);
+
+//ПЕРЕВІРКА
+// Отримати всі контакти
 // invokeAction({ action: "listContacts" });
-// invokeAction({ action: "getContactById", contactId });
+
+// Отримати контакт по id
+// const id = 5;
+// invokeAction({ action: "get", id });
+
+// Додаємо новий контакт
 // const newContact = {
 //   name: "Elon Musk",
 //   email: "elon@star.link" ,
 //   phone: "(380) 380-8080",
 // };
-// передаємо в дію назву діі та новий товар (датуЇ який треба додати
+// передаємо в дію назву діі та новий контакт, який треба додати
 // invokeAction({
 //   action: "addContact",
 //   name: "Elon Musk",
 //   email: "elon@star.link",
 //   phone: "(380) 380-8080",
 // });
+
+//Видалямо контакт, передаємо id
 // const removeContactId = "10";
-//
-invokeAction({ action: "removeContact", id: "1" });
+// invokeAction({
+//   action: "removeContact",
+//   id: "e14e20eb-c703-4e49-ba2a-8d0bcb4e910c",
+// });
