@@ -5,7 +5,7 @@ node index.js --action list
 
 # Получаем контакт по id
 node index.js --action get --id 5
-![image](https://user-images.githubusercontent.com/87442018/173236760-0ae9739f-337f-4cc5-8806-ebd07f40341a.png)
+![image](https://user-images.githubusercontent.com/87442018/173237659-d1d43039-871f-4a44-b95f-8f2f27afcec1.png)
 
 
 # Добавялем контакт
