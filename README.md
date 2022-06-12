@@ -1,7 +1,9 @@
 # goit-nodejs-hw-01
 # Получаем и выводим весь список контактов в виде таблицы (console.table)
 node index.js --action list
-![image](https://user-images.githubusercontent.com/87442018/173236643-1c9215af-fa15-4fc1-bdce-1c6eb0aa1465.png)
+
+![image](https://user-images.githubusercontent.com/87442018/173237486-f37fba7d-f395-43a7-bd46-fb82db67f9b7.png)
+
 
 
 
